@@ -47,3 +47,6 @@ docker build -t goals-react .
 ```
 docker run -v /Users/neerajsarathe/Documents/Others/multi-01-starting-setup/frontend/src:/app/src --name goals-frontend --rm -d -p 3000:3000 goals-react
 ```
+
+> **_NOTE:_**
+> This multi container setup is used for the development environment
