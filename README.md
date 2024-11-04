@@ -75,6 +75,6 @@ docker-compose down # For Docker CLI
 #### Points to Remember:
 - Networks is by default created once the docker is up unless you need a custom network for specific task
 - On docker-compose down, all the containers and networks are deleted automatically
-
-> **_NOTE:_**
+<br/><br/>
+> **_NOTE:_** 
 > This multi container setup is used for the development environment
