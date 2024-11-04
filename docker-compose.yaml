@@ -1,0 +1,55 @@
+version: '3.8' # Not needed (Deprecated)
+services:
+  mongodb:
+    image: mongo
+    volumes:
+      - data:/data/db
+    container_name: mongodb # Change container name
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: neeraj
+      MONGO_INITDB_ROOT_PASSWORD: raviteja
+
+      ## ALTERNATIVE APPROACH
+      # - MONGO_INITDB_ROOT_USERNAME=neeraj 
+      # - MONGO_INITDB_ROOT_PASSWORD=raviteja
+
+    ## IF YOU HAVE ENVIRONMENT FILE
+    # env_file:
+    #   - ./env/mongo.env
+
+  backend:
+    build: ./backend
+    # build: 
+    #   context: ./backend
+    #   dockerfile: dockerfile-dev
+    #   args: 
+    #     some-arg: 1
+
+    ports:
+      - "80:80"
+    
+    volumes:
+      - logs:/app/logs
+      - ./backend:/app
+      - /app/node_modules
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true # For open input connection
+    tty: true # For attaching terminal
+    depends_on:
+      - backend
+    
+
+volumes:
+  data:
+  logs:
+  # No need to specify bind mounts and anonymous volumes

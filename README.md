@@ -48,5 +48,33 @@ docker build -t goals-react .
 docker run -v /Users/neerajsarathe/Documents/Others/multi-01-starting-setup/frontend/src:/app/src --name goals-frontend --rm -d -p 3000:3000 goals-react
 ```
 
+# Alternate Approach
+## Using Docker Compose
+
+### To start a docker
+```
+docker compose up # For Docker Desktop
+docker-compose up # For Docker CLI
+```
+
+#### Arguments:
+- \-d : To run docker in dettached mode
+- \--build : To force rebuild all the images on every start
+
+### To stop the container
+
+```
+docker compose down # For Docker Desktop
+docker-compose down # For Docker CLI
+```
+
+#### Arguments: 
+- \-v : To delete volumes when the containers are stopped
+
+
+#### Points to Remember:
+- Networks is by default created once the docker is up unless you need a custom network for specific task
+- On docker-compose down, all the containers and networks are deleted automatically
+
 > **_NOTE:_**
 > This multi container setup is used for the development environment
